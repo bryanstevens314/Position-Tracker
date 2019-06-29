@@ -1,8 +1,8 @@
-# Boilermaker
+# Node-React-Starter
 
 _Good things come in pairs_
 
-Looking to mix up a backend with express/sequelize and a frontend with react/redux? That's `boilermaker`!
+Looking to mix up a backend with express/sequelize and a frontend with react/redux? That's `Node-React-Starter`!
 
 ## Start
 
@@ -42,7 +42,7 @@ Either way, you'll need to set up your deployment server to start:
 
 (_**NOTE**: This step assumes that you already have Travis-CI testing your code._)
 
-CI is not about testing per se – it's about _continuously integrating_ your changes into the live application, instead of periodically _releasing_ new versions. CI tools can not only test your code, but then automatically deploy your app. Boilermaker comes with a `.travis.yml` configuration almost ready for deployment; follow these steps to complete the job.
+CI is not about testing per se – it's about _continuously integrating_ your changes into the live application, instead of periodically _releasing_ new versions. CI tools can not only test your code, but then automatically deploy your app. Node-React-Starter comes with a `.travis.yml` configuration almost ready for deployment; follow these steps to complete the job.
 
 1.  Run `git checkout master && git pull && git checkout -b f/travis-deploy` (or use some other new branch name).
 2.  Un-comment the bottom part of `.travis.yml` (the `before_deploy` and `deploy` sections)
@@ -57,7 +57,7 @@ That's it! From now on, whenever `master` is updated on GitHub, Travis will auto
 
 #### Option B: Manual Deployment from your Local Machine
 
-Some developers may prefer to control deployment rather than rely on automation. Your local copy of the application can be pushed up to Heroku at will, using Boilermaker's handy deployment script:
+Some developers may prefer to control deployment rather than rely on automation. Your local copy of the application can be pushed up to Heroku at will, using Node-React-Starter's handy deployment script:
 
 1.  Make sure that all your work is fully committed and pushed to your master branch on Github.
 2.  If you currently have an existing branch called "deploy", delete it now (`git branch -d deploy`). We're going to use a dummy branch with the name "deploy" (see below), so if you have one lying around, the script below will error
