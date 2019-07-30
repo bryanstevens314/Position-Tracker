@@ -5,6 +5,8 @@ import history from '../history'
  * ACTION TYPES
  */
 const GET_USER = 'GET_USER'
+const SAVED_POSITION = 'SAVED_POSITION'
+const CREATED_POSITION = 'CREATED_POSITION'
 const REMOVE_USER = 'REMOVE_USER'
 
 /**
@@ -16,6 +18,8 @@ const defaultUser = {}
  * ACTION CREATORS
  */
 const getUser = user => ({type: GET_USER, user})
+const createdPosition = position => ({type: CREATED_POSITION, position})
+const savedPosition = position => ({type: SAVED_POSITION, position})
 const removeUser = () => ({type: REMOVE_USER})
 
 /**
@@ -27,6 +31,26 @@ export const me = () => async dispatch => {
     dispatch(getUser(res.data || defaultUser))
   } catch (err) {
     console.error(err)
+  }
+}
+
+export const savePosition = position => async dispatch => {
+  try {
+    res = await axios.post('api/transactions', position)
+    if (res.data) {
+      dispatch(savedPosition(res.data))
+      history.push('/home')
+    }
+  } catch (err) {
+    console.log(err)
+  }
+}
+export const createPosition = position => dispatch => {
+  try {
+    dispatch(createdPosition(position))
+    history.push('/home')
+  } catch (err) {
+    console.log(err)
   }
 }
 
@@ -62,7 +86,19 @@ export const logout = () => async dispatch => {
 export default function(state = defaultUser, action) {
   switch (action.type) {
     case GET_USER:
+      if (!action.user.positions) {
+        const user = action.user
+        user.positions = []
+        return user
+      }
       return action.user
+    case CREATED_POSITION:
+      const user = {...state, positions: [action.position, ...state.positions]}
+      return user
+    case SAVED_POSITION:
+      const savedPositions = state.positions
+      savedPositions[0] = action.position
+      return {...state, positions: savedPositions}
     case REMOVE_USER:
       return defaultUser
     default:
