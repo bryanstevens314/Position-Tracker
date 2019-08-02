@@ -1,7 +1,15 @@
 body {
   font-family: sans-serif;
 }
-
+nav {
+  background: #20ce99;
+  text-align: right;
+  width: 100%;
+  position: absolute;
+  margin: 0 auto;
+  left: 0px;
+  top: 0px;
+}
 a {
   text-decoration: none;
 }
@@ -11,6 +19,7 @@ label {
 }
 
 nav a {
+  color: #262626;
   display: inline-block;
   margin: 1em;
 }
@@ -18,4 +27,32 @@ nav a {
 form div {
   margin: 1em;
   display: inline-block;
+}
+li {
+  display: inline-flex;
+}
+input {
+  width: 90%;
+}
+td {
+  padding: 0px;
+}
+.app > div {
+  margin-top: 30px;
+}
+.auth {
+  position: relative;
+  margin: 0 auto;
+  text-align: center;
+  background: #f2f2f2;
+  width: 90%;
+  height: 300px;
+  top: 46px;
+}
+.auth > form {
+  display: grid;
+}
+.positions {
+  width: 100%;
+  text-align: left;
 }

@@ -3,8 +3,8 @@ const Sequelize = require('sequelize')
 const db = require('../db')
 
 const Positions = db.define('position', {
-  user_id: {
-    type: Sequelize.INTEGER,
+  quantity: {
+    type: Sequelize.STRING,
     allowNull: false
   },
   symbol: {
@@ -12,18 +12,18 @@ const Positions = db.define('position', {
     allowNull: false
   },
   ask: {
-    type: Sequelize.INTEGER,
+    type: Sequelize.STRING,
     allowNull: false
   },
   sell: {
-    type: Sequelize.INTEGER
+    type: Sequelize.STRING
   },
   bought: {
-    type: Sequelize.DATE,
+    type: Sequelize.STRING,
     allowNull: false
   },
   sold: {
-    type: Sequelize.DATE
+    type: Sequelize.STRING
   }
 })
 

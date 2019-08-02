@@ -5,12 +5,12 @@ import Tracker from './tracker'
 /**
  * COMPONENT
  */
-export const UserHome = props => {
+export const Robinhood = props => {
   const {email} = props
 
   return (
     <div>
-      <h3>Welcome, {email}</h3>
+      <h3>{email}</h3>
       <Tracker />
     </div>
   )
@@ -25,11 +25,11 @@ const mapState = state => {
   }
 }
 
-export default connect(mapState)(UserHome)
+export default connect(mapState)(Robinhood)
 
 /**
  * PROP TYPES
  */
-UserHome.propTypes = {
+Robinhood.propTypes = {
   email: PropTypes.string
 }

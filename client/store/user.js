@@ -36,10 +36,10 @@ export const me = () => async dispatch => {
 
 export const savePosition = position => async dispatch => {
   try {
-    res = await axios.post('api/transactions', position)
+    res = await axios.post('api/positions', position)
     if (res.data) {
       dispatch(savedPosition(res.data))
-      history.push('/home')
+      //history.push('/home')
     }
   } catch (err) {
     console.log(err)
@@ -48,7 +48,7 @@ export const savePosition = position => async dispatch => {
 export const createPosition = position => dispatch => {
   try {
     dispatch(createdPosition(position))
-    history.push('/home')
+    history.push('/robinhood')
   } catch (err) {
     console.log(err)
   }
@@ -64,7 +64,7 @@ export const auth = (email, password, method) => async dispatch => {
 
   try {
     dispatch(getUser(res.data))
-    history.push('/home')
+    history.push('/robinhood')
   } catch (dispatchOrHistoryErr) {
     console.error(dispatchOrHistoryErr)
   }

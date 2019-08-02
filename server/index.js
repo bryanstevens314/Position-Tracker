@@ -6,12 +6,12 @@ const session = require('express-session')
 const passport = require('passport')
 const SequelizeStore = require('connect-session-sequelize')(session.Store)
 const db = require('./db')
-const sessionStore = new SequelizeStore({ db })
+const Position = require('./db/models/positions')
+const sessionStore = new SequelizeStore({db})
 const PORT = process.env.PORT || 8080
 const app = express()
 const socketio = require('socket.io')
 module.exports = app
-
 
 /**
  * In your development environment, you can keep all of your
@@ -28,7 +28,10 @@ passport.serializeUser((user, done) => done(null, user.id))
 
 passport.deserializeUser(async (id, done) => {
   try {
-    const user = await db.models.user.findById(id)
+    const user = await db.models.user.findOne({
+      where: {id: id},
+      include: {model: Position, as: 'positions'}
+    })
     done(null, user)
   } catch (err) {
     done(err)
@@ -41,7 +44,7 @@ const createApp = () => {
 
   // body parsing middleware
   app.use(express.json())
-  app.use(express.urlencoded({ extended: true }))
+  app.use(express.urlencoded({extended: true}))
 
   // compression middleware
   app.use(compression())
@@ -51,8 +54,8 @@ const createApp = () => {
     session({
       secret: process.env.SESSION_SECRET || 'my best friend is Cody',
       store: sessionStore,
-      resave: false,
-      saveUninitialized: false
+      resave: true,
+      saveUninitialized: true
     })
   )
   app.use(passport.initialize())

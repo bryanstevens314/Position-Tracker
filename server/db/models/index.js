@@ -1,8 +1,10 @@
 const User = require('./user')
 const Positions = require('./positions')
 
-User.belongsToMany(Positions, {through: 'Positions'})
-Positions.belongsToMany(User, {through: 'Positions'})
+// User.belongsToMany(Positions, { through: 'user_id' })
+// Positions.belongsToMany(User, { through: 'user_id' })
+User.hasMany(Positions)
+Positions.belongsTo(User)
 /**
  * If we had any associations to make, this would be a great place to put them!
  * ex. if we had another model called BlogPost, we might say:
